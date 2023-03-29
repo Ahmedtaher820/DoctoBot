@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Tilt+Prism&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Climate Crisis', cursive;
+font-family: 'Tilt Prism', cursive;
+    @apply bg-firstBg;
+  }
