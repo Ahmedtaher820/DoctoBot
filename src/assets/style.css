@@ -1,15 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Tilt+Prism&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Red+Hat+Display:wght@300;400;600;700;800;900&family=Tilt+Prism&display=swap');:root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    font-family: 'Climate Crisis', cursive;
-font-family: 'Tilt Prism', cursive;
+    font-family: 'Red Hat Display', sans-serif;
     @apply bg-firstBg;
   }
+  .error-msg{
+    @apply text-red-600 mt-1
+  }
+
+  /* Register Styles */
+  .form-field {
+    position: relative;
+}
+
+.form-field label {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    transition: all 0.3s ease;
+    z-index: -2;
+    font-size: 16px;
+    @apply text-textColor
+}
+
+.form-field input,
+.form-field .vue-tel-input {
+    background-color: transparent;
+    padding: 8px;
+    @apply border-b border-textColor;
+}
+
+.form-field input:focus+label,
+.form-field .vue-tel-input:focus+label,
+input:not(:placeholder-shown)~label {
+    top: -10px;
+    left: 0;
+    font-size: 12px;
+}
+
+input:focus {
+    outline: none;
+
+}
+.center-items{
+  @apply  flex items-center justify-center
+}
+.overlay{
+    @apply absolute inset-0;
+    background-color: rgba(51, 51, 51, 0.334);
+}

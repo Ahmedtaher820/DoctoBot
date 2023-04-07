@@ -2,6 +2,10 @@ const tailwindcss = require('tailwindcss');
 
 const primary = {
   DEFAULT: '#595CFF',
+  600:'#595cffd4',
+  400:'#595cff94',
+  200:'#595cff47',
+  100:'#595cff33'
 }
 const firstBg = {
   DEFAULT: '#F5F5F5',
@@ -10,13 +14,16 @@ const secondBg = {
   DEFAULT: '#e6c10f',
 }
 const danger = {
-  DEFAULT: '#FF5858',
+  DEFAULT: '#D85252',
 }
 const secondary = {
   DEFAULT: '#e6c10f',
 }
 const textColor = {
   DEFAULT: '#707070',
+}
+const navText = {
+  DEFAULT: '#777',
 }
 module.exports = {
   // content: [
@@ -32,7 +39,8 @@ module.exports = {
         firstBg,
         danger,
         textColor,
-        secondary
+        secondary,
+        navText
       },
     },
   },

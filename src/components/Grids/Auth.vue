@@ -3,11 +3,11 @@
 </script>
 
 <template>
-<div class="grid grid-cols-3">
-    <div class="col-span-1 md:py-16">
+<div class="grid grid-cols-3 place-items-center">
+    <div class="lg:col-span-1 col-span-3 relative">
         <slot name="left-part" />
     </div>
-    <div class="col-span-2 md:py-20">
+    <div class="lg:col-span-2 hidden lg:block">
         <slot name="right-part" />
     </div>
 </div>  

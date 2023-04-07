@@ -16,17 +16,10 @@ const checkRoute = computed(()=>{
       <router-view />
     </div>
     <div v-else>
-      <AppGrid>
-        <template #left-part>
-          <navigation />
-        </template>
-        <template #center-part>
-          <router-view/>
-        </template>
-        <template #right-part>
-            <h2>welcomne</h2>
-        </template>
-      </AppGrid>
+      <Navigation />
+      <div class="py-8 px-16">
+        <router-view/>
+      </div>
     </div>
   </div>
 </template>

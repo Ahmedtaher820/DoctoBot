@@ -1,8 +1,14 @@
 <script lang="ts" setup>
+defineProps({
+    customeBg:{
+        type:String,
+        default:''
+    }
+})
 </script>
 
 <template>
-  <button class="bg-primary text-white md:w-80 font-semibold rounded-full py-3" v-bind="$attrs">
+  <button class=" rounded-full py-3 inline-block" :class="[customeBg ? customeBg : 'bg-primary text-white']" v-bind="$attrs">
     <slot/>
   </button>
 </template>
