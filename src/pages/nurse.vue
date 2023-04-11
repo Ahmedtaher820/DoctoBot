@@ -50,7 +50,7 @@ onMounted(()=>{
   <div class="grid grid-cols-3 gap-6">
     <div class="md:col-span-2 grid gap-y-8 col-span-3">
         <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 justify-between">
                 <img src="/users/girl.png" class="md:w-24 w-12 md:h-24 h-12" alt="">
                 <div>
                     <h2 class="font-bold text-base md:text-2xl">{{user.name}}</h2>

@@ -50,7 +50,7 @@ onMounted(()=>{
   <div class="grid grid-cols-3 gap-6">
     <div class="md:col-span-2 grid gap-y-8 col-span-3">
         <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center justify-between gap-2">
                 <img src="/users/user.png" class="md:w-24 w-12 md:h-24 h-12" alt="">
                 <div>
                     <h2 class="font-bold text-base md:text-2xl">{{user.name}}</h2>
@@ -88,8 +88,8 @@ onMounted(()=>{
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div  v-for="rev in user.reviwes" :key="rev.id" class="bg-white rounded-lg p-3">
-                    <div class="flex justify-between gap-2">
-                        <div class="flex items-center gap-1 pb-2">
+                    <div class="flex justify-between gap-4">
+                        <div class="flex items-center gap-1 pb-4">
                             <img class="w-14 object-fill" src="/users/user2.png" alt="">
                             <div>
                                 <h3 class="text-1xl">{{rev.name}}</h3>
@@ -108,7 +108,7 @@ onMounted(()=>{
                             </ul>
                         </div>
                     </div>
-                    <div class="pt-2 text-sm border-t font-medium text-textColor">
+                    <div class="pt-4 text-sm border-t font-medium text-textColor">
                         {{ rev.desc }}
                     </div>
                 </div>

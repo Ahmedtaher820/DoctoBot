@@ -31,7 +31,7 @@
                     <h2 class="text-textColor text-1xl mb-2">
                         Available Nurses
                     </h2>
-                    <div class="avaliable-docs flex flex-col gap-3 overflow-y-scroll px-4">
+                    <div class="avaliable-docs flex flex-col gap-3 overflow-y-scroll ">
                         <doctors-grid v-for="i in 10" :key="i" />
                     </div>
             </div>

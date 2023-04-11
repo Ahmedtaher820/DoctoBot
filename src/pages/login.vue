@@ -17,10 +17,12 @@ const rules = {
     }
 }
 const v$ = useVuelidate(rules, formdata)
+const router = useRouter()
 const handleSubmit = () => {
     v$.value.$touch()
     if (v$.value.$invalid)
         return
+    router.push({path:"/"})
 }
 </script>
 

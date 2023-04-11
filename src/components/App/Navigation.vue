@@ -1,7 +1,6 @@
 
 <script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-// import {  BellIcon } from '@vue-hero-icons/outline/icons/BellIcon'
 const nav = ref([
   {
     path: '/',
@@ -10,7 +9,7 @@ const nav = ref([
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 26 26">
   <g id="vuesax_bold_home-2" data-name="vuesax/bold/home-2" transform="translate(-605 -176)">
     <g id="home-2" transform="translate(605 176)">
-      <path id="Vector" d="M19.552,5.219,13.313.853A5.256,5.256,0,0,0,7.366.994L1.939,5.229A5.581,5.581,0,0,0,0,9.172v7.474a5.016,5.016,0,0,0,5,5.015H16.681a5.007,5.007,0,0,0,5-5V9.313A5.528,5.528,0,0,0,19.552,5.219Zm-7.9,12.11a.812.812,0,0,1-1.625,0v-3.25a.812.812,0,1,1,1.625,0Z" transform="translate(2.157 2.17)" fill="#595cff"/>
+      <path id="Vector" d="M19.552,5.219,13.313.853A5.256,5.256,0,0,0,7.366.994L1.939,5.229A5.581,5.581,0,0,0,0,9.172v7.474a5.016,5.016,0,0,0,5,5.015H16.681a5.007,5.007,0,0,0,5-5V9.313A5.528,5.528,0,0,0,19.552,5.219Zm-7.9,12.11a.812.812,0,0,1-1.625,0v-3.25a.812.812,0,1,1,1.625,0Z" transform="translate(2.157 2.17)" fill="#a5a5a5"/>
       <path id="Vector-2" data-name="Vector" d="M0,0H26V26H0Z" transform="translate(26 26) rotate(180)" fill="none" opacity="0"/>
       </g>
       </g>
@@ -89,8 +88,8 @@ const nav = ref([
           <!-- Mobile menu button -->
           <DisclosureButton class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
             <span class="sr-only">Open main menu</span>
-            <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
-            <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
+            <svg v-if="!open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"><path fill="#888888" fill-rule="evenodd" d="M1.5 3a.5.5 0 0 0 0 1h12a.5.5 0 0 0 0-1h-12ZM1 7.5a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5Zm0 4a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5Z" clip-rule="evenodd"/></svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="block h-6 w-6"  viewBox="0 0 384 512"><path fill="#888888" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7L86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256L41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3l105.4 105.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256l105.3-105.4z"/></svg>
           </DisclosureButton>
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
@@ -129,7 +128,7 @@ const nav = ref([
                 <MenuItem v-slot="{ active }">
                   <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Settings</a>
                 </MenuItem>
-                <MenuItem v-slot="{ active }">
+                <MenuItem v-slot="{ active }" @click="$router.push({path:'/login'})">
                   <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</a>
                 </MenuItem>
               </MenuItems>
@@ -140,12 +139,15 @@ const nav = ref([
     </div>
     <transition enter-active-class="transition ease-out duration-200" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
     <DisclosurePanel class="sm:hidden">
-      <div class="space-y-1 pb-4 pt-2">
+      <div class="space-y-1 pb-4 pt-2 z-10">
         <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
        
-        <router-link :to="{path: item.path}" v-for="item in nav" :key="item.icon" class="flex gap-2 border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">
-          <span v-html="item.icon"></span>
-          {{item.name}}</router-link>
+        <router-link :to="{path: item.path}" v-for="item in nav" :key="item.icon" class=" ">
+          <div @click="open = false" class="flex gap-2 border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 w-full transition-all duration-300">
+            <span v-html="item.icon"></span>
+            {{item.name}}
+          </div>
+        </router-link>
       </div>
     </DisclosurePanel>
   </transition>
@@ -153,9 +155,20 @@ const nav = ref([
 
 </template>
 <style>
-.link{
-  @apply text-navText
+@media(min-width:768px){
+  .link{
+    @apply text-navText
+  }
+  .router-link-exact-active,.router-link-active{
+    @apply bg-indigo-200  w-fit  text-primary border-b border-primary
+  }
 }
-.router-link-exact-active,.router-link-active{
-  @apply bg-indigo-200  w-fit  text-primary border-b border-primary
-}</style>
+@media(max-width:768px){
+  .link{
+    @apply text-navText
+  }
+  .router-link-exact-active,.router-link-active{
+    @apply bg-indigo-200  w-full  text-primary border-b border-primary
+  }
+}
+</style>
