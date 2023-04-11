@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     App: typeof import('./components/Grids/App.vue')['default']
     AppGrid: typeof import('./components/Grids/AppGrid.vue')['default']
+    AppointmentDetails: typeof import('./components/App/AppointmentDetails.vue')['default']
     Auth: typeof import('./components/Grids/Auth.vue')['default']
     BaseButton: typeof import('./components/App/BaseButton.vue')['default']
     BoxDetail: typeof import('./components/App/BoxDetail.vue')['default']

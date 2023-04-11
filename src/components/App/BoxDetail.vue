@@ -2,7 +2,7 @@
 <script lang="ts" setup>
 </script>
 <template>
-  <div class="flex flex-col gap-4 p-3 bg-white shadow-sm rounded-xl">
+  <div class="flex flex-col gap-2 md:p-3 p-2 bg-white shadow-sm rounded-xl">
     <slot />
   </div>
 </template>

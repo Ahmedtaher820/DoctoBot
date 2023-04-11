@@ -13,5 +13,6 @@ export interface DocInfo {
     name: string
     phone: string
     category: string
+    type?: string
     
 }

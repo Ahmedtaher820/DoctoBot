@@ -17,7 +17,7 @@ const checkRoute = computed(()=>{
     </div>
     <div v-else>
       <Navigation />
-      <div class="py-8 px-16">
+      <div class="md:py-8 md:px-16 px-8 py-4">                  
         <router-view/>
       </div>
     </div>
@@ -25,4 +25,5 @@ const checkRoute = computed(()=>{
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Red+Hat+Display:wght@300;400;600;700;800;900&family=Tilt+Prism&display=swap');@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Red+Hat+Display:wght@300;400;600;700;800;900&family=Tilt+Prism&display=swap');
 </style>

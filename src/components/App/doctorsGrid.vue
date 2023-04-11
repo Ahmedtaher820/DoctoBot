@@ -6,28 +6,40 @@ const props = defineProps({
         type: Object as PropType<DocInfo>,
         default: () => ({
             img: '',
-            name: 'Dr/ Ahmed Nasser',
+            name: 'Ahmed Nasser',
             phone: '+20 120 585 4874',
             category: 'Demorology',
+            type: 'doctors',
+
         })
     }
 })
+const router = useRouter()
+const route = useRoute()
+const visitPage = (routeName: string)=>{
+    console.log(route.name)
+    if(route.name === 'Nurses')
+        router.push({path:`/nurse/${routeName}`})
+    
+    else
+        router.push({path:`/${props.info.type}/${routeName}`})
+    
+}
 </script>
 
 <template>
-<div class="grid md:grid-cols-5 grid-cols-4 gap-4 bg-white py-4 px-2 rounded-md">
-    <div class="col-span-2 flex items-center gap-2 justify-start">
+<div class="grid md:grid-cols-5 grid-cols-4 cursor-pointer gap-4 bg-white py-4 px-6 rounded-md doctor-grid relative" @click="visitPage(info.name)">
+    <div class="md:col-span-2 col-span-3 flex items-center gap-2 justify-start order-1 font-semibold">
         <img class="w-8 h-8 rounded-full object-cover" src="../../../public/icons/doc.png" alt="">
         {{ info.name }}
     </div>
-    <div class="md:col-span-1 col-span-2 center-items">
+    <div class="md:col-span-1 col-span-2 md:center-items pt-3 md:py-0 order-3 md:order-2 text-textColor">
         {{ info.phone }}
     </div>
-    <div class="md:col-span-1 col-span-2 center-items">
+    <div class="md:col-span-1 col-span-2 md:center-items pt-3 md:py-0 text-end order-4 md:order-3">
         {{ info.category }}
-
     </div>
-    <div class="md:col-span-1 col-span-2 flex center-items gap-3">
+    <div class="md:col-span-1 col-span-1 flex  items-center justify-end gap-3 order-2 md:order-4">
         <a :href="`tel:${info.phone}`" class="w-8 h-8 rounded-full bg-primary-100 border center-items">
             <svg id="vuesax_bold_call" data-name="vuesax/bold/call" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <g id="call">
@@ -51,4 +63,18 @@ const props = defineProps({
 </div>
 </template>
 
-<style></style>
+<style>
+@media (max-width:768px) {
+    .doctor-grid::after{
+        content:'';
+        position: absolute;
+        top: 55%;
+        transform: translateY(50%);
+        left: 24px;
+        height: 1px;
+        width: calc(100% - 48px);
+        background-color: rgba(34, 34, 34, 0.169);
+    }
+ }
+
+</style>

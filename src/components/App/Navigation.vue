@@ -37,7 +37,7 @@ const nav = ref([
       `
   },
   {
-    path: '/nurser',
+    path: '/nurses',
     name: 'Nurser',
     icon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 26 26">
@@ -83,7 +83,7 @@ const nav = ref([
 
 <template>
   <Disclosure as="nav" class="bg-white shadow" v-slot="{ open }">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
       <div class="relative flex h-16 justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button -->
@@ -95,8 +95,10 @@ const nav = ref([
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
-            <img class="block h-8 w-auto lg:hidden" src="/icons/logo.svg" alt="Your Company" />
-            <img class="hidden h-8 w-auto lg:block" src="/icons/logo.svg" alt="Your Company" />
+            <router-link to="/">
+              <img class="block h-8 w-auto lg:hidden" src="/icons/logo.svg" alt="Your Company" />
+              <img class="hidden h-8 w-auto lg:block" src="/icons/logo.svg" alt="Your Company" />
+            </router-link> 
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8 flex-1 justify-center">
             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
@@ -136,22 +138,24 @@ const nav = ref([
         </div>
       </div>
     </div>
-
+    <transition enter-active-class="transition ease-out duration-200" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
     <DisclosurePanel class="sm:hidden">
       <div class="space-y-1 pb-4 pt-2">
         <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-        <DisclosureButton as="a" href="#" class="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700">Dashboard</DisclosureButton>
-        <DisclosureButton as="a" href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Team</DisclosureButton>
-        <DisclosureButton as="a" href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Projects</DisclosureButton>
-        <DisclosureButton as="a" href="#" class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Calendar</DisclosureButton>
+       
+        <router-link :to="{path: item.path}" v-for="item in nav" :key="item.icon" class="flex gap-2 border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">
+          <span v-html="item.icon"></span>
+          {{item.name}}</router-link>
       </div>
     </DisclosurePanel>
+  </transition>
   </Disclosure>
+
 </template>
 <style>
 .link{
   @apply text-navText
 }
-.router-link-exact-active{
+.router-link-exact-active,.router-link-active{
   @apply bg-indigo-200  w-fit  text-primary border-b border-primary
 }</style>
