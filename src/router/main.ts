@@ -48,11 +48,11 @@ const router = createRouter({
             path:'/search/:slug',
             component: ()=>import('../pages/register.vue')
         },
-        {
-            name:'notfound',
-            path:'/:pathMatch(.*)*',
-            component: ()=>import('../pages/notfound.vue')
-        },
+        // {
+        //     name:'notfound',
+        //     path:'/:pathMatch(.*)*',
+        //     component: ()=>import('../pages/errorPage.vue')
+        // },
     ]
 })
 export default router

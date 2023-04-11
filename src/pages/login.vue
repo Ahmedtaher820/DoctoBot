@@ -1,7 +1,5 @@
 
 <script lang="ts" setup>
-import { VueTelInput } from 'vue3-tel-input'
-import 'vue3-tel-input/dist/vue3-tel-input.css'
 import { useVuelidate } from '@vuelidate/core'
 import { required, email , minLength } from '@vuelidate/validators'
 const formdata = reactive({
@@ -56,12 +54,12 @@ const handleSubmit = () => {
                             class="mt-4 relative text-black hover:shadow-md duration-200 transition-all"
                             custome-bg="bg-white ">
                             Create With Google
-                            <img src="../../public/icons/Image 4.svg" class="right-4 absolute top-2" alt="">
+                            <!-- <img src="/icons/Image4.svg" class="right-4 absolute top-2" alt=""> -->
                         </base-button>
                         <base-button type="submit" class="mt-4  md:w-80 text-black hover:shadow-md duration-200 transition-all"
                             custome-bg="bg-white relative">
                             Create An Twiiter
-                            <img src="../../public/icons/Image 5.svg" class="right-4 absolute top-2" alt="">
+                            <!-- <img src="/icons/Image5.svg" class="right-4 absolute top-2" alt=""> -->
 
                         </base-button>
                     </div>
@@ -73,7 +71,7 @@ const handleSubmit = () => {
         <template #right-part>
             <div class="right-bg  py-4">
                 <div class="img-content rounded-md overflow-hidden bg-white">
-                    <img src="../../public/background/Mask Group 7.svg" class="w-full h-full border rounded-md" alt="">
+                    <img src="/background/Mask.svg" class="w-full h-full border rounded-md" alt="">
                 </div>
             </div>
         </template>

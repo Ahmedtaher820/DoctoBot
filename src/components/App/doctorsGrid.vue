@@ -30,7 +30,7 @@ const visitPage = (routeName: string)=>{
 <template>
 <div class="grid md:grid-cols-5 grid-cols-4 cursor-pointer gap-4 bg-white py-4 px-6 rounded-md doctor-grid relative" @click="visitPage(info.name)">
     <div class="md:col-span-2 col-span-3 flex items-center gap-2 justify-start order-1 font-semibold">
-        <img class="w-8 h-8 rounded-full object-cover" src="../../../public/icons/doc.png" alt="">
+        <img class="w-8 h-8 rounded-full object-cover" src="/icons/doc.png" alt="">
         {{ info.name }}
     </div>
     <div class="md:col-span-1 col-span-2 md:center-items pt-3 md:py-0 order-3 md:order-2 text-textColor">

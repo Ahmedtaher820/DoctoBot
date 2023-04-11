@@ -9,7 +9,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    App: typeof import('./components/Grids/App.vue')['default']
     AppGrid: typeof import('./components/Grids/AppGrid.vue')['default']
     AppointmentDetails: typeof import('./components/App/AppointmentDetails.vue')['default']
     Auth: typeof import('./components/Grids/Auth.vue')['default']
@@ -17,7 +16,6 @@ declare module '@vue/runtime-core' {
     BoxDetail: typeof import('./components/App/BoxDetail.vue')['default']
     DoctorsGrid: typeof import('./components/App/doctorsGrid.vue')['default']
     Navigation: typeof import('./components/App/Navigation.vue')['default']
-    OverLay: typeof import('./components/App/OverLay.vue')['default']
     Register: typeof import('./components/Auth/Register.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
