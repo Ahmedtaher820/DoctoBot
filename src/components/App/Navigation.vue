@@ -143,7 +143,7 @@ const nav = ref([
         <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
        
         <router-link :to="{path: item.path}" v-for="item in nav" :key="item.icon" class=" ">
-          <div @click="open = false" class="flex gap-2 border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 w-full transition-all duration-300">
+          <div  class="flex gap-2 border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 w-full transition-all duration-300">
             <span v-html="item.icon"></span>
             {{item.name}}
           </div>
