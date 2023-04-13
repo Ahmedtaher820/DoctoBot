@@ -53,17 +53,22 @@ const handleSubmit = () => {
                             Create An Account
                         </base-button>
                         <base-button type="submit"
-                            class="mt-4 relative text-black hover:shadow-md duration-200 transition-all"
-                            custome-bg="bg-white ">
+                        class="mt-4 relative text-black hover:shadow-md duration-200 transition-all flex items-center"
+                        custome-bg="bg-white ">
+                        <span class="flex-1">
                             Create With Google
-                            <!-- <img src="/icons/Image4.svg" class="right-4 absolute top-2" alt=""> -->
-                        </base-button>
-                        <base-button type="submit" class="mt-4  md:w-80 text-black hover:shadow-md duration-200 transition-all"
-                            custome-bg="bg-white relative">
-                            Create An Twiiter
-                            <!-- <img src="/icons/Image5.svg" class="right-4 absolute top-2" alt=""> -->
+                        </span>
 
-                        </base-button>
+                        <img src="/icons/google.png" class="right-4 absolute top-1" alt="">
+                    </base-button>
+                    <base-button type="submit" class="mt-4  md:w-80 text-black hover:shadow-md duration-200 transition-all flex items-center"
+                    custome-bg="bg-white relative">
+                    <span class="flex-1">
+                        Create An Twitter
+                    </span>
+                    <img src="/icons/twitter.png" class="right-4 absolute top-1" alt="">
+
+                </base-button>
                     </div>
                     <router-link to="/register" class="text-base underline">You dont have account?</router-link>
 
