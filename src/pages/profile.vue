@@ -1,6 +1,109 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import {info} from "../store/info"
+import useVuelidate from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
+const {docsInfo , nursersInfo } = info()
+const showModal = ref(false)
+const formData = reactive({
+    name:'',
+    gender:'',
+    blood :'',
+    address:'',
+    phone:'',
+    email:''
+})
+const rules = {
+    name:{
+        required
+    },
+    gender:{
+        required
+    },
+    blood :{
+        required
+    },
+    address:{
+        required
+    },
+    phone:{
+        required
+    },
+    email:{
+        required
+    },
+}
+const v$ = useVuelidate(rules , formData)
+const processing = ref(false)
+const submitData = ()=>{
+    v$.value.$touch()
+    if(v$.value.$invalid){
+        return
+    }
+    processing.value = true
+}
+const people = [
+  { label: 'Male',value:1 },
+  { label: 'Female   ',value:2 },
+]
+const closeModal = ()=>{
+    showModal.value = false
+    v$.value.$reset()
+    formData.name=''
+    formData.gender=''
+    formData.blood =''
+    formData.address=''
+    formData.phone=''
+    formData.email=''
+}
+</script>
 <template>
-    <div class="grid grid-cols-3">
+    <overlay-loader v-show="processing" />
+    <modal @close="closeModal" :open="showModal" title="Edit Profile">
+        <form @submit.prevent="submitData" class="px-4 edit-form">
+            <div class="flex flex-col gap-3">
+                <div>
+                    <base-input v-model="formData.name" id="name" title="name" />
+                    {{ formData.name }}
+                    <div class="input-errors" v-for="error of v$.name.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                </div>
+                <div>
+                    
+                    <base-select :options="people" v-model="formData.gender" title="gender" id="gender" />
+                    <div class="input-errors" v-for="error of v$.gender.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                </div>
+                <div>
+                    <base-input v-model="formData.blood" id="blood" title="blood" />
+                    <div class="input-errors" v-for="error of v$.blood.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                </div>
+                <div>
+                    <base-input v-model="formData.address" id="address" title="address" />
+                    <div class="input-errors" v-for="error of v$.address.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                </div>
+                <div>
+                    <base-input v-model="formData.phone" id="phone" title="phone" />
+                    <div class="input-errors" v-for="error of v$.phone.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                </div>
+                <div>
+                    <base-input v-model="formData.email" id="email" title="email" />
+                    <div class="input-errors" v-for="error of v$.email.$errors" :key="error.$uid">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
+                </div>
+                <base-button class="mt-4 hover:bg-primary-600 duration-300 transition-all" >Update</base-button>
+            </div>
+        </form>
+    </modal>
+    <div class="grid grid-cols-3 gap-6">
         <div class="md:col-span-2 col-span-3">
             <div class="profile-bg">
                 <img src="/background/profilebg.png" alt="">
@@ -17,7 +120,7 @@
                         </div>
                     </div>
                     <div>
-                        <base-button class="w-fit mt-2 py-2 px-6">Edit Profile</base-button>
+                        <base-button class="w-fit mt-2 py-2 px-6" @click="showModal = true">Edit Profile</base-button>
                     </div>
                 </div>
             </div>
@@ -62,11 +165,19 @@
                 </div>
             </div>
         </div>
-        <div class="md:col-span-1 md:block hidden"></div>
+        <div class="md:col-span-1 md:block hidden">
+            <profile-doctors :doctors-info="docsInfo" title="Recent Doctors" />
+            <div class="mb-10"/>
+            <profile-doctors :doctors-info="nursersInfo" title="Recent Nurses"/>
+            <div class="mb-10"/>
+            <div class="h-72 bg-white rounded-lg"></div>
+        </div>
     </div>
 </template>
   
   
   <style>
-
+.edit-form input::placeholder{
+    @apply text-sm
+}
   </style>

@@ -16,3 +16,9 @@ export interface DocInfo {
     type?: string
     
 }
+export interface DocProfile{
+    img:string
+    name:string
+    category: string
+    uuid: string
+}
