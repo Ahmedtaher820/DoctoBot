@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 
 import { doctors } from "../store/doctors";
 const { getAllDoctors } = doctors();
-const { getProcessing, doctorsTableData } = storeToRefs(doctors());
+const {  doctorsTableData } = storeToRefs(doctors());
 const processing = ref(false);
 
 onMounted(async () => {

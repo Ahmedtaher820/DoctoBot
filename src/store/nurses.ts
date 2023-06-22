@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import DataServices from "../Services/nurses"
-import {Paginate,Nurses} from "../types/type"
+import {Paginate,Nurses,PaginationMeta,PaginationLinks} from "../types/type"
 
 export const nursesStore = defineStore({
     id:'nurses',
@@ -32,8 +32,8 @@ export const nursesStore = defineStore({
         async getAllNurses(){
             return DataServices.getAllNurses().then((res)=>{
                 this.nursesTableData.nursesList = res.data.data
-                this.nursesTableData.paginationLinks = res.paginationLinks
-                this.nursesTableData.paginationMeta = res.paginationMeta
+                // this.nursesTableData.paginationLinks = res.paginationLinks
+                // this.nursesTableData.paginationMeta = res.paginationMeta
                 return res
             })
         }

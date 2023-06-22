@@ -5,12 +5,12 @@ export const authStore = defineStore({
     id: 'auth',
     state: () => ({
         userInfo: {
-            name: null,
-            email: null,
-            password: null,
-            role: null,
-            active: null,
-            _id: null,
+            name: '',
+            email: '',
+            password: '',
+            role: '',
+            active: false,
+            _id: '',
         } as User,
     }),
     actions: {

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import DataServices from "../Services/doctors"
-import {Paginate,Doctors} from "../types/type"
+import {Paginate,Doctors,PaginationLinks,PaginationMeta} from "../types/type"
 
 export const doctors = defineStore({
     id:'doctors',
@@ -27,15 +27,12 @@ export const doctors = defineStore({
             selectedIndex: null as number | null,
         }
     }),
-    getters:{
-        getProcessing : state => state.tableData.processing
-    },
     actions:{
         async getAllDoctors(){
             return DataServices.getAllDoctors().then((res)=>{
                 this.doctorsTableData.doctorsList = res.data.data
-                this.doctorsTableData.paginationLinks = res.paginationLinks
-                this.doctorsTableData.paginationMeta = res.paginationMeta
+                // this.doctorsTableData.paginationLinks = res.paginationLinks
+                // this.doctorsTableData.paginationMeta = res.paginationMeta
                 return res
             })
         }

@@ -99,6 +99,7 @@ const router = createRouter({
     ]
 })
 router.beforeEach((to,from,next)=>{
+    // @ts-ignore
     const auth = JSON.parse(localStorage.getItem('token'))
     console.log(auth)
     if(to.matched.some(record => record.meta.requiresAuth)) {

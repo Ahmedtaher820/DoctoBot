@@ -170,7 +170,7 @@ const loginWithGoogle = ()=>{
         <template #right-part>
             <div class="right-bg  py-4">
                 <div class="img-content rounded-md overflow-hidden bg-white">
-                    <img src="/background/Mask Group 6.svg" class="w-full h-full border rounded-md" alt="">
+                    <img src="/background/MaskGroup6.svg" class="w-full h-full border rounded-md" alt="">
                 </div>
             </div>
         </template>

@@ -24,6 +24,7 @@ instance.interceptors.request.use((request) => {
   return Promise.reject(error);
 }
 )
+//  @ts-ignore
 instance.interceptors.response.use((response)=>{
     if (response?.status === UNAUTHORIZED_CODE) {
         router.push({path:'/login'})
