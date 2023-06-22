@@ -1,21 +1,43 @@
-import {defineStore} from "pinia"
-import type {Login , Register} from "../types/type"
+import { defineStore } from "pinia"
+import type { Login, Register, User } from "../types/type"
 import Auth from "../Services/Auth"
 export const authStore = defineStore({
-    id:'auth',
-    state:()=>({
-
+    id: 'auth',
+    state: () => ({
+        userInfo: {
+            name: null,
+            email: null,
+            password: null,
+            role: null,
+            active: null,
+            _id: null,
+        } as User,
     }),
-    actions:{
-        userLogin(payload:Login){
-            return Auth.userLogin(payload).then((res)=>{
+    actions: {
+        async getUserInfo(){
+            return Auth.getUserInfo().then((res)=>{
+                console.log(res)
+            })
+        },
+        async userLogin(payload: Login) {
+            return Auth.userLogin(payload).then((res) => {
+                this.userInfo = res.data.data
+                localStorage.setItem('token',JSON.stringify(res.data.token))
                 return res
             })
         },
-        userRegister(payload:Register): Promise<any>{
-            return Auth.userRigster(payload).then((res)=>{
+        async userRegister(payload: Register): Promise<any> {
+            return Auth.userRigster(payload).then((res) => {
+                this.userInfo = res.data.data
+                localStorage.setItem('token',JSON.stringify(res.data.token))
+                localStorage
                 return res
             })
         },
+        async forgetPassword(payload:{email:string}): Promise<object>{
+            return Auth.forgetPassword(payload).then((res)=>{
+                return res
+            })
+        }
     }
 })

@@ -41,6 +41,8 @@ const user = ref({
 })
 const starCount = ref<number>(0) 
 const disableCount = ref<number>(0)
+    const date = ref(new Date());
+
 onMounted(()=>{
     starCount.value = Math.round(user.value.star)
     disableCount.value = 5 - starCount.value 
@@ -115,13 +117,52 @@ onMounted(()=>{
             </div>
         </div>
     </div>
-    <div class="md:col-span-1 md:block hidden">
-        <div class="flex flex-col gap-4"></div>
-        <div class="bg-white rounded-lg center-items flex-col gap-2   md:py-4 md:px-3 py-2">
-            <h2 class="text-2xl font-bold">200 EGP</h2>
-            <h3 class="text-textColor text-sm">
-                Booking Free
-            </h3>
+    <div class="md:col-span-1 md:block hidden sticky top-0 h-full overflow-x-hidden box-content">
+        
+        <div class="flex flex-col gap-8">
+
+            <div class="bg-white rounded-lg center-items flex-col gap-2   md:py-4 md:px-3 py-2">
+                <h2 class="text-2xl font-bold">200 EGP</h2>
+                <h3 class="text-textColor text-sm">
+                    Booking Free
+                </h3>
+                
+            </div>
+            <div class="bg-white rounded-lg p-3 flex flex-col gap-4">
+                <VueDatePicker class="w-full border-none" v-model="date" inline auto-apply />
+                <div class="flex flex-row text-center flex-nowrap w-96 overflow-x-auto gap-6  pb-3 pe-4 pt-4 avaliable-box">
+
+                    <div class="bg-primary text-white rounded-xl py-2 px-3">
+                        <div>
+                            <span class="whitespace-nowrap">08:00 - 09:00</span>
+                            
+                        </div>
+                        <small>Avalibale</small>
+                    </div>
+                    <div class="bg-primary text-white rounded-xl py-2 px-3">
+                        <div>
+                            <span class="whitespace-nowrap">08:00 - 09:00</span>
+                            
+                        </div>
+                        <small>Avalibale</small>
+                    </div>
+                    <div class="bg-primary text-white rounded-xl py-2 px-3">
+                        <div>
+                            <span class="whitespace-nowrap">08:00 - 09:00</span>
+                            
+                        </div>
+                        <small>Avalibale</small>
+                    </div>
+                    <div class="bg-primary text-white rounded-xl py-2 px-3">
+                        <div>
+                            <span class="whitespace-nowrap">08:00 - 09:00</span>
+                            
+                        </div>
+                        <small>Avalibale</small>
+                    </div>
+                </div>
+                <base-button class="mt-4">Book Now</base-button>
+            </div>
         </div>
     </div>
   </div>
@@ -129,4 +170,30 @@ onMounted(()=>{
 
 
 <style>
+.dp__month_year_row{
+    margin-bottom: 15px;
+}
+.dp__calendar_header{
+    margin-bottom: 10px;
+}
+.dp__flex_display {
+    display: block;
+}
+.avaliable-box::-webkit-scrollbar{
+    width: 10px;
+    padding: 5px;
+    height: 5px;
+ }
+ .avaliable-box::-webkit-scrollbar-thumb{
+    @apply bg-primary-400;
+    padding: 5px;
+    border-radius: 5px;
+ 
+ }
+ .avaliable-box::-webkit-scrollbar-track{
+    background-color: #eee;
+    border-radius: 10px;
+    padding: 5px;
+ 
+ }
 </style>

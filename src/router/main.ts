@@ -6,47 +6,90 @@ const router = createRouter({
         {
             name:'Home',
             path:'/',
-            component:index
+            component:index,
+            meta:{
+                requiresAuth: true
+            }
         },
         {
             name:'Doctors',
             path:'/doctors',
-            component: ()=>import('../pages/doctors.vue')
+            component: ()=>import('../pages/doctors.vue'),
+            meta:{
+                requiresAuth: true
+            }
         },
         {
             name:'Doctor',
-            path:'/doctors/:id',
-            component: ()=>import('../pages/doctor.vue')
+            path:'/doctor/:id',
+            component: ()=>import('../pages/doctor.vue'),
+            meta:{
+                requiresAuth: true
+            }
         },
         {
             name:'Nurse',
             path:'/nurse/:id',
-            component: ()=>import('../pages/nurse.vue')
+            component: ()=>import('../pages/nurse.vue'),
+            meta:{
+                requiresAuth: true
+            }
         },
         {
             name:'Nurses',
             path:'/nurses',
-            component: ()=>import('../pages/nurses.vue')
+            component: ()=>import('../pages/nurses.vue'),
+            meta:{
+                requiresAuth: true
+            }
         },
         {
             name:'profile',
             path:'/profile',
-            component: ()=>import('../pages/profile.vue')
-        },
-        {
-            name:'Login',
-            path:'/login',
-            component: ()=>import('../pages/login.vue')
-        },
-        {
-            name:'Register',
-            path:'/register',
-            component: ()=>import('../pages/register.vue')
+            component: ()=>import('../pages/profile.vue'),
+            meta:{
+                requiresAuth: true
+            }
         },
         {
             name:'Search',
             path:'/search/:slug',
-            component: ()=>import('../pages/register.vue')
+            component: ()=>import('../pages/register.vue'),
+            meta:{
+                requiresAuth: true
+            }
+        },
+        {
+            name:'Login',
+            path:'/login',
+            component: ()=>import('../pages/login.vue'),
+            meta:{
+                guest: true
+            }
+        },
+        {
+            name:'Register',
+            path:'/register',
+            component: ()=>import('../pages/register.vue'),
+            meta:{
+                guest: true
+            }
+        },
+        {
+            name:'ForgetPassword',
+            path:'/forgetPassword',
+            component: ()=>import('../pages/forgetPassword.vue'),
+            meta:{
+                guest: true
+            }
+        },
+        {
+            name:'ResetPassword',
+            path:'/resetPassword',
+            component: ()=>import('../pages/resetPassword.vue'),
+            meta:{
+                guest: true
+            }
         },
         // {
         //     name:'notfound',
@@ -54,5 +97,25 @@ const router = createRouter({
         //     component: ()=>import('../pages/errorPage.vue')
         // },
     ]
+})
+router.beforeEach((to,from,next)=>{
+    const auth = JSON.parse(localStorage.getItem('token'))
+    console.log(auth)
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+        if (!auth) {
+          next('/login')
+          return
+        }
+        
+        next()
+      } else {
+        if((to.name === 'Login' || to.name === 'ForgetPassword' || to.name==='Register' || to.name==='ResetPassword') && auth ){
+            next('/')
+
+        }else{
+
+            next()
+        }
+      }
 })
 export default router

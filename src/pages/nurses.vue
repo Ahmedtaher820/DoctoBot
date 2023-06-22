@@ -1,5 +1,26 @@
+<script lang="ts" setup>
+import type {Nurses, PaginationMeta,PaginationLinks} from "../types/type"
+import { storeToRefs } from "pinia"
+
+import {nursesStore} from "../store/nurses"
+const {getAllNurses  } = nursesStore()
+const {nursesTableData} = storeToRefs(nursesStore())
+const processing = ref(false)
+
+onMounted(async ()=>{
+   if(nursesTableData.value.nursesList.length > 0){
+      return
+   }
+   processing.value = true
+   await getAllNurses().finally(()=>{
+      processing.value = false
+   })
+})
+</script>
 <template>
   <div class="doctors">
+    <overlay-loader v-if="processing" />
+
     <div class="grid md:grid-cols-3 grid-cols-2 gap-4">
         <div class="md:col-span-1 col-span-2">
             <box-detail>
@@ -26,22 +47,18 @@
                 </box-detail>
             </div>
         </div>
-        <div class="grid md:grid-cols-3 grid-cols-1 gap-4 mt-8">
-            <div class="md:col-span-2 col-span-1   ">
+        <div class="mt-8">
+            <div class="">
                     <h2 class="text-textColor text-1xl mb-2">
                         Available Nurses
                     </h2>
                     <div class="avaliable-docs flex flex-col gap-3 overflow-y-scroll ">
-                        <doctors-grid v-for="i in 10" :key="i" />
+                        <nurses-grid
+            v-for="doc in nursesTableData.nursesList"
+            :key="doc._id"
+            :info="doc"
+          />
                     </div>
-            </div>
-            <div class="md:col-span-1 md:block hidden">
-                <div class="flex flex-col gap-3">
-                    <h2 class="text-textColor text-1xl">
-                        Booking Schedule 
-                    </h2>
-                    <div class="bg-white schedule rounded-lg"></div>
-                </div>
             </div>
         </div>
   </div>
