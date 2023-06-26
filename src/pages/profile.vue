@@ -2,6 +2,13 @@
 import {info} from "../store/info"
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
+import { storeToRefs } from "pinia"
+import {nursesStore} from "../store/nurses"
+import {doctors} from "../store/doctors"
+
+const {nursesTableData} = storeToRefs(nursesStore())
+const {doctorsTableData} = storeToRefs(doctors())
+
 const {docsInfo , nursersInfo } = info()
 const showModal = ref(false)
 const formData = reactive({
@@ -55,6 +62,25 @@ const closeModal = ()=>{
     formData.phone=''
     formData.email=''
 }
+const {getAllNurses  } = nursesStore()
+const {getAllDoctors  } = doctors()
+
+onMounted(async()=>{
+    if(nursesTableData.value.nursesList.length > 0){
+      return
+   }
+   processing.value = true
+   await getAllNurses().finally(()=>{
+      processing.value = false
+   })
+   if(doctorsTableData.value.doctorsList.length > 0){
+      return
+   }
+   processing.value = true
+   await getAllDoctors().finally(()=>{
+      processing.value = false
+   })
+})
 </script>
 <template>
     <overlay-loader v-show="processing" />
@@ -166,9 +192,27 @@ const closeModal = ()=>{
             </div>
         </div>
         <div class="md:col-span-1 md:block hidden">
-            <profile-doctors :doctors-info="docsInfo" title="Recent Doctors" />
+            <div>
+                <h2 class="text-2xl font-semibold mb-2">Recent Doctors</h2>
+                <div v-for="doctorItem in doctorsTableData.doctorsList.slice(0,4)" :key="doctorItem._id" class="py-3 px-4 bg-white rounded-lg flex items-center gap-3  cursor-pointer mb-2 hover:shadow-md duration-300 transition-all" @click="$router.push({path:`/doctor/${doctorItem._id}`})">
+                    <img :src="doctorItem.image" alt="doctors img" class="w-12 h-12 object-contain" >
+                    <div>
+                        <h4 class="text-base">{{doctorItem.name}}</h4>
+                        <p class="text-base text-textColor">{{doctorItem.specialiaty}}</p>
+                    </div>
+                </div>
+            </div>
             <div class="mb-10"/>
-            <profile-doctors :doctors-info="nursersInfo" title="Recent Nurses"/>
+            <div>
+                <h2 class="text-2xl font-semibold mb-2">Recent Nurses</h2>
+                <div v-for="doctorItem in nursesTableData.nursesList.slice(0,4)" :key="doctorItem._id" class="py-3 px-4 bg-white rounded-lg flex items-center gap-3  cursor-pointer mb-2 hover:shadow-md duration-300 transition-all" @click="$router.push({path:`/nurses/${doctorItem._id}`})">
+                    <img :src="doctorItem.image" alt="doctors img" class="w-12 h-12 object-contain" >
+                    <div>
+                        <h4 class="text-base">{{doctorItem.name}}</h4>
+                        <p class="text-base text-textColor">{{doctorItem.shift}}</p>
+                    </div>
+                </div>
+            </div>
             <div class="mb-10"/>
             <div class="h-72 bg-white rounded-lg"></div>
         </div>

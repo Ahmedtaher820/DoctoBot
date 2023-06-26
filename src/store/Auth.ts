@@ -12,6 +12,8 @@ export const authStore = defineStore({
             active: false,
             _id: '',
         } as User,
+        recoveryCode: false,
+        emailForgetPassword: ''
     }),
     actions: {
         async getUserInfo(){
@@ -30,7 +32,6 @@ export const authStore = defineStore({
             return Auth.userRigster(payload).then((res) => {
                 this.userInfo = res.data.data
                 localStorage.setItem('token',JSON.stringify(res.data.token))
-                localStorage
                 return res
             })
         },
@@ -38,6 +39,18 @@ export const authStore = defineStore({
             return Auth.forgetPassword(payload).then((res)=>{
                 return res
             })
-        }
+        },
+        async resetCodeFun(payload: {resetCode:string}): Promise<any>{
+            return Auth.resetCodeFun(payload).then((res)=>{
+                return res
+            })
+        },
+        async resetPassword(payload: {email:string , newPassword: string}): Promise<any>{
+            return Auth.resetPassword(payload).then((res)=>{
+                this.userInfo = res.data.data
+                localStorage.setItem('token',JSON.stringify(res.data.token))
+                return res
+            })
+        },
     }
 })

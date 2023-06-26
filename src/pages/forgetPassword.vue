@@ -16,17 +16,17 @@ const rules = {
 const v$ = useVuelidate(rules, formdata)
 const router = useRouter()
 const processing = ref(false)
-const errHandle = ref<{value:'',msg:''}[]>()
+const errHandle = ref('')
 const handleSubmit = () => {
+    errHandle.value = ''
     v$.value.$touch()
     if (v$.value.$invalid)
         return
     processing.value = true    
     forgetPassword(formdata).then(()=>{
-        router.push({path:'/'})
+        router.push({path:'/recoveryCode'})
     }).catch((err)=>{
-        console.log(err)
-        // errHandle.value = err.response.data.errors
+        errHandle.value = err.response.data.message
     }).finally(()=>{
         processing.value = false
     })
@@ -52,7 +52,9 @@ const handleSubmit = () => {
                             </div>
                             
                         </div>
-                        <err-msg :errors="errHandle" />
+                        <p v-if="errHandle.length > 0" class="text-red-500 font-semibold w-full text-sm my-2">
+                            {{ errHandle }}
+                        </p>
                         <div class="grid">
                             <base-button type="submit" class="hover:bg-primary-600 duration-200 transition-all">
                             Reset Password

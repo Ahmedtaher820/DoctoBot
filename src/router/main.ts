@@ -91,6 +91,14 @@ const router = createRouter({
                 guest: true
             }
         },
+        {
+            name:'RecoveryCode',
+            path:'/recoveryCode',
+            component: ()=>import('../pages/recoveryCode.vue'),
+            meta:{
+                guest: true
+            }
+        },
         // {
         //     name:'notfound',
         //     path:'/:pathMatch(.*)*',
@@ -101,7 +109,6 @@ const router = createRouter({
 router.beforeEach((to,from,next)=>{
     // @ts-ignore
     const auth = JSON.parse(localStorage.getItem('token'))
-    console.log(auth)
     if(to.matched.some(record => record.meta.requiresAuth)) {
         if (!auth) {
           next('/login')
@@ -110,7 +117,7 @@ router.beforeEach((to,from,next)=>{
         
         next()
       } else {
-        if((to.name === 'Login' || to.name === 'ForgetPassword' || to.name==='Register' || to.name==='ResetPassword') && auth ){
+        if((to.name === 'Login' || to.name === 'ForgetPassword' || to.name==='Register' || to.name==='ResetPassword' || toRaw.name === "RecoveryCode") && auth ){
             next('/')
 
         }else{

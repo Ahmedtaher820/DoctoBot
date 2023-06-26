@@ -11,6 +11,7 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/],
       dts: 'src/components.d.ts',
     }),
+    
     AutoImport({
       imports: [
         'vue',

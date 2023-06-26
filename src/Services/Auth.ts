@@ -12,5 +12,11 @@ export default {
     },
     forgetPassword(payload: {email:string}){
         return DataServices.post('/auth/forgotPassword',payload)
+    },
+    resetCodeFun(payload: {resetCode: string}){
+        return DataServices.post('/auth/verifyResetCode',payload)
+    },
+    resetPassword(payload:{email:string , newPassword: string}){
+        return DataServices.put('/auth/resetPassword', payload)
     }
 }

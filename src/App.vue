@@ -4,7 +4,7 @@ import { computed } from "vue"
 import { useRoute } from "vue-router"
 const router = useRoute()
 const checkRoute = computed(()=>{
-  if(router.name == 'Login' || router.name ==="Register" || router.name === 'ForgetPassword' || router.name === 'ResetPassword')
+  if(router.name == 'Login' || router.name ==="Register" || router.name === 'ForgetPassword' || router.name === 'ResetPassword' || router.name === 'RecoveryCode')
     return 'Auth'
   return 'default'  
 })
