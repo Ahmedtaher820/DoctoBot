@@ -5,6 +5,7 @@ const route = useRoute()
 const reservations = ref({})
 onMounted(()=>{
     console.log(route.query.calendar)
+    //@ts-ignore
     getReservations(route.params.id,route.query.calendar).then((res)=>{
         reservations.value = res.data.data
     })

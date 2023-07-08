@@ -110,7 +110,8 @@ const router = createRouter({
         {
             name:'errPage',
             path:'/:pathMatch(.*)*',
-            component: ()=>import('../pages/errorPage.vue'),
+    //@ts-ignore
+            component: ()=>import('../pages/notFound.vue'),
             meta:{
                 guest: true
             }

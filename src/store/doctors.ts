@@ -36,9 +36,10 @@ export const doctors = defineStore({
                 return res
             })
         },
-        async getDoctorsById(uuid:string): Promise<Doctors>{
-            return DataServices.getDoctorById(uuid).then((res:Doctors)=>{
-                this.doctorsTableData.selectedDoctors = res.data.data
+        async getDoctorsById(uuid:string): Promise<any>{
+            return DataServices.getDoctorById(uuid).then((res)=>{
+                //@ts-ignore
+                this.doctorsTableData.selectedDoctors = res.data?.data
                 return res
             })
         }

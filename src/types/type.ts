@@ -49,6 +49,7 @@ export interface Doctors {
     image: string
     created_at: string
     rating: string
+    price: string
 }
 export interface Nurses {
     _id?: string
@@ -64,6 +65,7 @@ export interface Nurses {
     image: string
     created_at: string
     rating: string
+    price: string
 }
 
 

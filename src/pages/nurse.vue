@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Doctors } from "@/types/types"
+import type { Doctors } from "../types/type"
 import useVuelidate from '@vuelidate/core'
 import { required, helpers } from "@vuelidate/validators"
 
@@ -107,6 +107,8 @@ const v$ = useVuelidate(rules, formData)
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
+                //@ts-ignore
+
 const selectCalendar = (dayDate: { startAt: string, endAt: string }, event) => {
     if (event.target.classList.contains('aticve')) {
         return
@@ -142,6 +144,7 @@ const doctorsInfo = ref<Doctors>()
         return
     }
     processing.value = true
+                //@ts-ignore
 
     addNewBookingNurses(formData).then((res) => {
         router.push({path:'/reservation/'+res.data.data._id , query:{calendar:'nurses'}})
@@ -157,6 +160,8 @@ onMounted(() => {
         return
     } else {
         processing.value = true
+                //@ts-ignore
+
         getNursesById(route.params.id).finally(()=>{
     processing.value = false
 

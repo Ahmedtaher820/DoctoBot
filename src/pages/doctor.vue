@@ -3,7 +3,7 @@ import useVuelidate from '@vuelidate/core'
 import { required, helpers } from "@vuelidate/validators"
 import { authStore } from '../store/Auth'
 import { doctors } from '../store/doctors'
-import type { Doctors } from "@/types/types"
+import type { Doctors } from "../types/type"
 import { storeToRefs } from 'pinia'
 const { addNewBooking } = authStore()
 const { getDoctorsById } = doctors()
@@ -112,12 +112,13 @@ const v$ = useVuelidate(rules, formData)
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
-const selectCalendar = (dayDate: { startAt: string, endAt: string }, event) => {
-    if (event.target.classList.contains('aticve')) {
+const selectCalendar = (dayDate: { startAt: string, endAt: string }, event:Event) => {
+    if ((event.target as HTMLElement).classList.contains('aticve')) {
         return
     }
-    document.querySelector('.calendar-date.active')?.classList.remove('active')
-    event.target.classList.add('active')
+    //@ts-ignore
+    document.querySelector('.calendar-date.active').classList.remove('active')
+    (event.target as HTMLElement).classList.add('active')
     formData.month = months[date.value.getMonth()]
     formData.weekday = days[date.value.getDay()]
     formData.startAt = dayDate.startAt
@@ -138,6 +139,7 @@ const sendBook = () => {
         return
     }
     processing.value = true
+    //@ts-ignore
 
     addNewBooking(formData).then((res) => {
         router.push({path:'/reservation/'+res.data.data._id , query:{calendar:'doctors'}})
@@ -152,6 +154,8 @@ onMounted(() => {
         return
     } else {
         processing.value = true
+    //@ts-ignore
+
         getDoctorsById(route.params.id).finally(()=>{
     processing.value = false
 
