@@ -18,5 +18,11 @@ export default {
     },
     resetPassword(payload:{email:string , newPassword: string}){
         return DataServices.put('/auth/resetPassword', payload)
-    }
+    },
+    addNewBooking(payload:{[key:string] : string[]}){
+        return DataServices.post('/calenders/doctors', payload)
+    },
+    getReservations(uuid:string,calendar:string){
+        return DataServices.post(`/calenders/${calendar}/${uuid}`)
+    },
 }

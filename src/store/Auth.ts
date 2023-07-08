@@ -52,5 +52,15 @@ export const authStore = defineStore({
                 return res
             })
         },
+        async addNewBooking(payload: {[key:string]:string[]}): Promise<any>{
+            return Auth.addNewBooking(payload).then((res)=>{
+                return res
+            })
+        },
+        async getReservations(uuid:string,calendar:string): Promise<any>{
+            return Auth.getReservations(uuid,calendar).then((res)=>{
+                return res
+            })
+        },
     }
 })

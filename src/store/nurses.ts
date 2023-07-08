@@ -36,6 +36,17 @@ export const nursesStore = defineStore({
                 // this.nursesTableData.paginationMeta = res.paginationMeta
                 return res
             })
-        }
+        },
+        async getNursesById(uuid:string): Promise<Nurses>{
+            return DataServices.getNursesById(uuid).then((res:Nurses)=>{
+                this.nursesTableData.selectedNurses = res.data.data
+                return res
+            })
+        },
+        async addNewBookingNurses(payload: {[key:string]:string[]}): Promise<any>{
+            return DataServices.addNewBooking(payload).then((res)=>{
+                return res
+            })
+        },
     }
 })

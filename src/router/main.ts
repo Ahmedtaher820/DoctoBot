@@ -99,6 +99,23 @@ const router = createRouter({
                 guest: true
             }
         },
+        {
+            name:'Reservation',
+            path:'/reservation/:id',
+            component: ()=>import('../pages/reservations.vue'),
+            meta:{
+                guest: true
+            }
+        },
+        {
+            name:'errPage',
+            path:'/:pathMatch(.*)*',
+            component: ()=>import('../pages/errorPage.vue'),
+            meta:{
+                guest: true
+            }
+        },
+        
         // {
         //     name:'notfound',
         //     path:'/:pathMatch(.*)*',

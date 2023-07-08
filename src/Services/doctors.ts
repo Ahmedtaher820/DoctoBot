@@ -4,8 +4,8 @@ export default{
     getAllDoctors(){
         return DataServices.get<Pagination<Doctors>>('/doctors')
     },
-    getDoctorById(){
-        return DataServices.get('/doctors')
+    getDoctorById(payload:string){
+        return DataServices.get<Doctors>(`/doctors/${payload}`)
     },
     getAllCalendar(){
         return DataServices.get<Pagination<Doctors>>('/doctors')

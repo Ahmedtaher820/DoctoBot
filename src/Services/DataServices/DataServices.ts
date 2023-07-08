@@ -16,7 +16,7 @@ instance.interceptors.request.use((request) => {
   const authToken = localStorage.getItem('token')
 
   if (authToken)
-    request.headers.Token = `${authToken}`
+    request.headers.Authorization = `Bearer ${authToken}`
 
   return request
 },

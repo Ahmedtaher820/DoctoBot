@@ -35,6 +35,12 @@ export const doctors = defineStore({
                 // this.doctorsTableData.paginationMeta = res.paginationMeta
                 return res
             })
+        },
+        async getDoctorsById(uuid:string): Promise<Doctors>{
+            return DataServices.getDoctorById(uuid).then((res:Doctors)=>{
+                this.doctorsTableData.selectedDoctors = res.data.data
+                return res
+            })
         }
     }
 })

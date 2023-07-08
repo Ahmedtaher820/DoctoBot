@@ -5,11 +5,14 @@ import { required } from "@vuelidate/validators";
 import { storeToRefs } from "pinia"
 import {nursesStore} from "../store/nurses"
 import {doctors} from "../store/doctors"
+import {authStore} from "../store/Auth"
 
 const {nursesTableData} = storeToRefs(nursesStore())
 const {doctorsTableData} = storeToRefs(doctors())
+const {userInfo} = storeToRefs(authStore())
 
 const {docsInfo , nursersInfo } = info()
+const {getUserInfo  } = authStore()
 const showModal = ref(false)
 const formData = reactive({
     name:'',
@@ -80,6 +83,7 @@ onMounted(async()=>{
    await getAllDoctors().finally(()=>{
       processing.value = false
    })
+   getUserInfo()
 })
 </script>
 <template>

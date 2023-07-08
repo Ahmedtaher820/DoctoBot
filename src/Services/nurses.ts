@@ -4,7 +4,10 @@ export default{
     getAllNurses(){
         return DataServices.get<Pagination<Nurses>>('/nurses')
     },
-    getNursesById(){
-        return DataServices.get<Nurses>('/nurses')
+    getNursesById(payload:string){
+        return DataServices.get<Nurses>(`/nurses/${payload}`)
+    },
+    addNewBooking(payload:{[key:string] : string[]}){
+        return DataServices.post('/calenders/nurses', payload)
     },
 }

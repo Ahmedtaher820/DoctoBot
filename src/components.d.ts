@@ -31,5 +31,7 @@ declare module '@vue/runtime-core' {
     ResetComp: typeof import('./components/Auth/ResetComp.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TheLoader: typeof import('./components/App/TheLoader.vue')['default']
+    UserIcon: typeof import('./components/userIcon.vue')['default']
   }
 }
