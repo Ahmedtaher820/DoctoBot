@@ -112,13 +112,14 @@ const v$ = useVuelidate(rules, formData)
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
-const selectCalendar = (dayDate: { startAt: string, endAt: string }, event:Event) => {
-    if ((event.target as HTMLElement).classList.contains('aticve')) {
+    //@ts-ignore
+const selectCalendar = (dayDate: { startAt: string, endAt: string }, event) => {
+    if (event.target.classList.contains('aticve')) {
         return
     }
     //@ts-ignore
     document.querySelector('.calendar-date.active').classList.remove('active')
-    (event.target as HTMLElement).classList.add('active')
+    event.target.classList.add('active')
     formData.month = months[date.value.getMonth()]
     formData.weekday = days[date.value.getDay()]
     formData.startAt = dayDate.startAt
