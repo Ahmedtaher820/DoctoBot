@@ -13,7 +13,7 @@ const { doctorsTableData } = storeToRefs(doctors())
 const { userInfo } = storeToRefs(authStore())
 
 const { docsInfo, nursersInfo } = info()
-const { getUserInfo, changeAdminData,UpdateUserInfo } = authStore()
+const { getUserInfo, changeAdminData } = authStore()
 const showModal = ref(false)
 const formData = reactive({
     name: '',

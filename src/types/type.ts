@@ -104,5 +104,5 @@ export interface User {
     role: string
     active: boolean
     _id: string
-    phone?: string
+    phone: string
 }

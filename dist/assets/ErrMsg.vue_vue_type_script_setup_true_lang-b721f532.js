@@ -1,0 +1,1 @@
+import{d as a,b as e,c as r,F as o,i as l,t as c}from"./index-862ae978.js";const u=a({__name:"ErrMsg",props:{errors:{type:Array,default:()=>[]}},setup(t){return(p,i)=>(e(),r("div",null,[(e(!0),r(o,null,l(t.errors,(s,n)=>(e(),r("p",{class:"text-red-500 text-lg font-semibold",key:n}," *"+c(s.msg)+"* ",1))),128))]))}});export{u as _};

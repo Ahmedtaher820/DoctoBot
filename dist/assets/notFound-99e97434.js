@@ -1,0 +1,1 @@
+import{af as t,b as s,c as o,n as e,g as c}from"./index-862ae978.js";const n={},a={class:"text-7xl center-items text-primary"},r=c("br",null,null,-1);function _(d,l){return s(),o("div",a,[e(" Opps! "),r,e(" Not Found This Page ")])}const f=t(n,[["render",_]]);export{f as default};

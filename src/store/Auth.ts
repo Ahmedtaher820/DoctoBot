@@ -16,12 +16,6 @@ export const authStore = defineStore({
         emailForgetPassword: ''
     }),
     actions: {
-        UpdateUserInfo(formdat:User){
-            Object.keys(this.userInfo).map((item)=>{
-                this.userInfo[item] = formdat[item]
-            })
-            console.log(Object.assign(this.userInfo , formdat))
-        },
         async getUserInfo(){
             return Auth.getUserInfo().then((res)=>{
                 this.userInfo = res.data.data
