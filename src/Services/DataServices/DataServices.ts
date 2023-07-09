@@ -13,7 +13,9 @@ const instance = axios.create({
     baseURL:'https://doctobot.onrender.com/doctobot'
 })
 instance.interceptors.request.use((request) => {
-  const authToken = localStorage.getItem('token')
+//  @ts-ignore
+
+  const authToken = JSON.parse(localStorage.getItem('token')) 
 
   if (authToken)
     request.headers.Authorization = `Bearer ${authToken}`
@@ -26,14 +28,14 @@ instance.interceptors.request.use((request) => {
 )
 //  @ts-ignore
 instance.interceptors.response.use((response)=>{
-    if (response?.status === UNAUTHORIZED_CODE) {
-        router.push({path:'/login'})
-        return
-      }
+    // if (response?.status === UNAUTHORIZED_CODE) {
+    //     router.push({path:'/login'})
+    //     return
+    //   }
       return response
     },
     (error) => {
-        if (error.response?.status === UNAUTHORIZED_CODE || error.response?.status === PAGE_EXPIRED) {
+        if ( error.response?.status === PAGE_EXPIRED) {
           localStorage.clear()
           router.push({ name: 'Login'})
           return

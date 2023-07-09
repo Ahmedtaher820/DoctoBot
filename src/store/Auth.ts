@@ -9,22 +9,29 @@ export const authStore = defineStore({
             email: '',
             password: '',
             role: '',
-            active: false,
             _id: '',
+            phone:''
         } as User,
         recoveryCode: false,
         emailForgetPassword: ''
     }),
     actions: {
+        UpdateUserInfo(formdat:User){
+            Object.keys(this.userInfo).map((item)=>{
+                this.userInfo[item] = formdat[item]
+            })
+            console.log(Object.assign(this.userInfo , formdat))
+        },
         async getUserInfo(){
             return Auth.getUserInfo().then((res)=>{
-                console.log(res)
+                this.userInfo = res.data.data
             })
         },
         async userLogin(payload: Login) {
             return Auth.userLogin(payload).then((res) => {
-                this.userInfo = res.data.data
-                localStorage.setItem('token',JSON.stringify(res.data.token))
+                this.userInfo = res.data?.data
+                localStorage.setItem('token',JSON.stringify(res.data?.token))
+                console.log(res)
                 return res
             })
         },
@@ -59,6 +66,19 @@ export const authStore = defineStore({
         },
         async getReservations(uuid:string,calendar:string): Promise<any>{
             return Auth.getReservations(uuid,calendar).then((res)=>{
+                return res
+            })
+        },
+        async changeAdminData(payload:Object): Promise<any>{
+            return Auth.changeAdminData(payload).then((res)=>{
+                this.userInfo = res.data.data
+            })
+        },async changeAdminPass(payload:{password:string}): Promise<any>{
+            return Auth.changeAdminPass(payload).then((res)=>{
+                return res
+            })
+        },async deleteAdmin(userId:string): Promise<any>{
+            return Auth.deleteAdmin(userId).then((res)=>{
                 return res
             })
         },

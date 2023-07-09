@@ -25,4 +25,13 @@ export default {
     getReservations(uuid:string,calendar:string){
         return DataServices.post(`/calenders/${calendar}/${uuid}`)
     },
+    deleteAdmin(userId:string){
+        return DataServices.delete(`/users/deleteMe/${userId}`)
+    },
+    changeAdminPass(payload:{password:string}){
+        return DataServices.put(`/users/changeMyPassword`,payload)
+    },
+    changeAdminData(payload:Object){
+        return DataServices.put(`/users/updateMe`,payload)
+    }
 }

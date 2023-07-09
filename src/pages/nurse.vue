@@ -174,7 +174,9 @@ onMounted(() => {
     <div class="md:col-span-2 grid gap-y-8 col-span-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 justify-between">
-                <img :src="nursesTableData.selectedNurses?.image" class="md:w-24 w-12 md:h-24 h-12 rounded-full object-contain" alt="">
+                <img :src="nursesTableData.selectedNurses?.image" v-if="nursesTableData.selectedNurses?.image !== '{}'" class="md:w-24 w-12 md:h-24 h-12 rounded-full object-contain" alt="">
+                <user-icon class="md:w-24 w-12 md:h-24 h-12 rounded-full object-contain" v-else />
+
                 <div>
                     <h2 class="font-bold text-base md:text-2xl">{{nursesTableData.selectedNurses?.name}}</h2>
                     <p class="text-textColor mt-1 mb-0">{{nursesTableData.selectedNurses?.shift}}</p>

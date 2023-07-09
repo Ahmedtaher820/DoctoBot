@@ -21,8 +21,9 @@ const rules = {
 const v$ = useVuelidate(rules, formdata)
 const router = useRouter()
 const processing = ref(false)
-const errHandle = ref<{value:'',msg:''}[]>()
+const errHandle =reactive({message:''})
 const handleSubmit = () => {
+    errHandle.message = ''
     v$.value.$touch()
     if (v$.value.$invalid)
         return
@@ -30,8 +31,7 @@ const handleSubmit = () => {
     userLogin(formdata).then(()=>{
         router.push({path:'/'})
     }).catch((err)=>{
-        console.log(err)
-        // errHandle.value = err.response.data.errors
+        errHandle.message = err.response.data.message
     }).finally(()=>{
         processing.value = false
     })
@@ -62,7 +62,9 @@ const handleSubmit = () => {
                             <div class="error-msg">{{ error.$message }}</div>
                         </div>
                     </div>
-                    <err-msg :errors="errHandle" />
+                    <p class="text-red-500 text-lg font-semibold" v-if="errHandle.message.length > 0">
+                        *{{ errHandle.message }}*
+                    </p>  
                     <div class="grid">
                         <router-link to="/forgetPassword" class="mb-2 underline">
                             Forgot your password?

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { Doctors } from "../../types/type"
 import { PropType } from "vue";
+import { UserCircleIcon } from '@heroicons/vue/24/solid'
+
 const props = defineProps({
     info: {
         type: Object as PropType<Doctors>,
@@ -13,7 +15,8 @@ const props = defineProps({
 <div class="grid md:grid-cols-5 grid-cols-4 cursor-pointer gap-4 bg-white py-4 px-6 rounded-md doctor-grid relative hover:shadow-md transition-all duration-300" @click="$router.push({path:`/doctor/${info._id}`})">
     <div class="md:col-span-2 col-span-3 flex items-center gap-2 justify-startt order-1 font-semibold">
         <check-status :status="info.isAvailable" />
-        <img class="w-8 h-8 rounded-full object-contain" loading="lazy"   :src="info.image" alt="">
+        <img class="w-8 h-8 rounded-full object-contain" loading="lazy" v-if="info.image !== '{}'"  :src="info.image" alt="">
+        <UserCircleIcon v-else class="w-10 h-10" />
         <span>
             {{ info.name }}
         </span>

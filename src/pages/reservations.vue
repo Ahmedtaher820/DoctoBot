@@ -32,7 +32,7 @@ const printPage = ()=>{
                         <b>Price</b>: <span class="text-zinc-500 ms-2">200 EGP</span> 
                     </div>
                     <div class="flex items-center">
-                        <b>Email</b>: <span class="text-zinc-500 ms-2">Ahmed Taher</span> 
+                        <b>Email</b>: <span class="text-zinc-500 ms-2">et8989784@gmail.com</span> 
                     </div>
                     <div class="flex items-center">
                         <b>Address</b>: <span class="text-zinc-500 ms-2">Cairo</span> 
@@ -48,19 +48,19 @@ const printPage = ()=>{
                 <div class="ps-2 flex flex-col gap-2 mt-4">
 
                     <div class="flex items-center">
-                        <b>Week Day</b>: <span class="text-zinc-500 ms-2">Friday</span> 
+                        <b>week day</b>: <span class="text-zinc-500 ms-2">Friday</span> 
                     </div>
                     <div class="flex items-center">
-                        <b>monthmonth</b>: <span class="text-zinc-500 ms-2">July</span> 
+                        <b>month</b>: <span class="text-zinc-500 ms-2">July</span> 
                     </div>
                     <div class="flex items-center">
                         <b>day</b>: <span class="text-zinc-500 ms-2">26</span> 
                     </div>
                     <div class="flex items-center">
-                        <b>startAt</b>: <span class="text-zinc-500 ms-2">10:00 PM</span> 
+                        <b>start at</b>: <span class="text-zinc-500 ms-2">10:00 PM</span> 
                     </div>
                     <div class="flex items-center">
-                        <b>endAt</b>: <span class="text-zinc-500 ms-2">11:00 PM</span> 
+                        <b>end at</b>: <span class="text-zinc-500 ms-2">11:00 PM</span> 
                     </div>
                 </div>
             </div>

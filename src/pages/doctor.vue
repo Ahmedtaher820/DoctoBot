@@ -117,8 +117,7 @@ const selectCalendar = (dayDate: { startAt: string, endAt: string }, event) => {
     if (event.target.classList.contains('aticve')) {
         return
     }
-    //@ts-ignore
-    document.querySelector('.calendar-date.active').classList.remove('active')
+    document.querySelector('.calendar-date.active')?.classList.remove('active')
     event.target.classList.add('active')
     formData.month = months[date.value.getMonth()]
     formData.weekday = days[date.value.getDay()]
@@ -150,14 +149,14 @@ const sendBook = () => {
 }
 const route = useRoute()
 const doctorsInfo = ref<Doctors>()
-onMounted(() => {
+onMounted(async() => {
+    processing.value = true
     if (doctorsTableData.value.selectedDoctors?._id === route.params.id) {
         return
     } else {
-        processing.value = true
     //@ts-ignore
 
-        getDoctorsById(route.params.id).finally(()=>{
+        await getDoctorsById(route.params.id).finally(()=>{
     processing.value = false
 
         })
@@ -170,7 +169,8 @@ onMounted(() => {
         <div class="md:col-span-2 grid gap-y-8 col-span-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center justify-between gap-2">
-                    <img :src="doctorsTableData.selectedDoctors?.image" class="md:w-24 w-12 md:h-24 h-12 object-contain" alt="">
+                    <img :src="doctorsTableData.selectedDoctors?.image" v-if="doctorsTableData.selectedDoctors?.image !== '{}'" class="md:w-24 w-12 md:h-24 h-12 rounded-full object-contain" alt="">
+                <user-icon class="md:w-24 w-12 md:h-24 h-12 rounded-full object-contain" v-else />
                     <div>
                         <h2 class="font-bold text-base md:text-2xl">{{ doctorsTableData.selectedDoctors?.name }}</h2>
                         <p class="text-textColor mt-1 mb-0">{{ doctorsTableData.selectedDoctors?.specialiaty }}</p>
