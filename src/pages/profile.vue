@@ -44,13 +44,13 @@ const submitData = () => {
     processing.value = true
     changeAdminData(formData).then((res)=>{
         // UpdateUserInfo(formData)
+        showModal.value = false
     }).catch((err) => {
         for (let prop in err.response.data.errors) {
             errHandle.value.push({ msg: err.response.data.errors[prop]?.msg, value: err.response.data.errors[prop]?.value })
         }
     }).finally(() => {
         processing.value = false
-        showModal.value = false
     })
 }
 const people = [
@@ -148,8 +148,8 @@ onMounted(async () => {
                             </div>
                         </div>
                         <div>
-                            <h2 class="text-3xl font-semibold">{{ userInfo.name }}</h2>
-                            <p class="text-textColor">{{ userInfo.role }}</p>
+                            <h2 class="text-3xl font-semibold">{{ userInfo?.name }}</h2>
+                            <p class="text-textColor">{{ userInfo?.role }}</p>
                         </div>
                     </div>
                     <div>
@@ -167,11 +167,11 @@ onMounted(async () => {
                 <div class="bg-white py-4 ps-5 rounded-lg">
                     <div class="flex flex-col py-3 border-b ">
                         <label for="" class="text-textColor mb-1 text-sm">Email</label>
-                        <p class="lead-6 text-base">{{ userInfo.email }}</p>
+                        <p class="lead-6 text-base">{{ userInfo?.email }}</p>
                     </div>
                     <div class="flex flex-col py-3 border-b ">
                         <label for="" class="text-textColor mb-1 text-sm">Phone</label>
-                        <p class="lead-6 text-base" v-if="userInfo.phone?.length > 0">{{ userInfo.phone }}</p>
+                        <p class="lead-6 text-base" v-if="userInfo?.phone?.length > 0">{{ userInfo?.phone }}</p>
 
                     </div>
                     <div class="flex flex-col py-3 border-b ">
@@ -184,7 +184,7 @@ onMounted(async () => {
                     </div>
                     <div class="flex flex-col py-3  ">
                         <label for="" class="text-textColor mb-1 text-sm">Role</label>
-                        <p class="lead-6 text-base">{{ userInfo.role }}</p>
+                        <p class="lead-6 text-base">{{ userInfo?.role }}</p>
                     </div>
                 </div>
             </div>
