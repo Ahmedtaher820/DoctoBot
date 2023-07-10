@@ -39,7 +39,7 @@ const nav = ref([
   },
   {
     path: '/nurses',
-    name: 'Nurser',
+    name: 'Nurses',
     icon: `
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 26 26">
       <g id="vuesax_linear_hospital" data-name="vuesax/linear/hospital" transform="translate(-748 -188)">
