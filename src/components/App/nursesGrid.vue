@@ -29,7 +29,7 @@ const props = defineProps({
         {{ info.shift }}
     </div>
     <div class="md:col-span-1 col-span-1 flex  items-center justify-end gap-3 order-2 md:order-4">
-        <a :href="info.whatsapp" class="w-8 h-8 rounded-full bg-primary-100 border center-items">
+        <a :href="`https://wa.me/${info.contactNumber}`" class="w-8 h-8 rounded-full bg-primary-100 border center-items">
             <svg id="vuesax_bold_call" data-name="vuesax/bold/call" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <g id="call">
                   <path id="Vector" d="M9.05,12.95,7.2,14.8a1,1,0,0,1-1.41.01c-.11-.11-.22-.21-.33-.32a28.414,28.414,0,0,1-2.79-3.27A17.828,17.828,0,0,1,.71,7.81,8.586,8.586,0,0,1,0,4.54,5.173,5.173,0,0,1,.36,2.61,4.6,4.6,0,0,1,1.51.94,2.93,2.93,0,0,1,3.59,0,1.879,1.879,0,0,1,4.4.18a1.63,1.63,0,0,1,.67.56L7.39,4.01a3.422,3.422,0,0,1,.4.7,1.581,1.581,0,0,1,.14.61,1.357,1.357,0,0,1-.21.71,3.4,3.4,0,0,1-.56.71l-.76.79a.535.535,0,0,0-.16.4.908.908,0,0,0,.03.23c.03.08.06.14.08.2a8.3,8.3,0,0,0,.93,1.28c.45.52.93,1.05,1.45,1.58.1.1.21.2.31.3A1,1,0,0,1,9.05,12.95Z" transform="translate(2 2)" fill="#595cff"/>
@@ -40,11 +40,13 @@ const props = defineProps({
               
         </a>
         <div class="w-8 h-8 rounded-full bg-primary-100 center-items">
-            <svg id="messages-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path id="Vector" d="M0,0H24V24H0Z" fill="none" opacity="0"/>
-                <path id="Vector-2" data-name="Vector" d="M13.9,14.83l.39,3.16a1,1,0,0,1-1.5.98l-3.46-2.06a.5.5,0,0,1-.17-.68,6.316,6.316,0,0,0,.77-3,6.836,6.836,0,0,0-7-6.64,7.208,7.208,0,0,0-2.28.36.5.5,0,0,1-.64-.6A8.716,8.716,0,0,1,8.6,0c4.88,0,8.83,3.69,8.83,8.24A8.054,8.054,0,0,1,13.9,14.83Z" transform="translate(4.566 2)" fill="#595cff"/>
-                <path id="Vector-3" data-name="Vector" d="M11,5.14A4.861,4.861,0,0,1,9.82,8.3,5.584,5.584,0,0,1,5.5,10.27L2.89,11.82a.625.625,0,0,1-.94-.61L2.2,9.24A4.988,4.988,0,0,1,0,5.14,5.023,5.023,0,0,1,2.38.91,5.683,5.683,0,0,1,5.5,0,5.327,5.327,0,0,1,11,5.14Z" transform="translate(2 10.09)" fill="#595cff"/>
-              </svg>
+            <a :href="`mailto: ${info.email}`" target="_blank" class="w-8 h-8 rounded-full bg-primary-100 border center-items">
+                <svg id="messages-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path id="Vector" d="M0,0H24V24H0Z" fill="none" opacity="0"/>
+                    <path id="Vector-2" data-name="Vector" d="M13.9,14.83l.39,3.16a1,1,0,0,1-1.5.98l-3.46-2.06a.5.5,0,0,1-.17-.68,6.316,6.316,0,0,0,.77-3,6.836,6.836,0,0,0-7-6.64,7.208,7.208,0,0,0-2.28.36.5.5,0,0,1-.64-.6A8.716,8.716,0,0,1,8.6,0c4.88,0,8.83,3.69,8.83,8.24A8.054,8.054,0,0,1,13.9,14.83Z" transform="translate(4.566 2)" fill="#595cff"/>
+                    <path id="Vector-3" data-name="Vector" d="M11,5.14A4.861,4.861,0,0,1,9.82,8.3,5.584,5.584,0,0,1,5.5,10.27L2.89,11.82a.625.625,0,0,1-.94-.61L2.2,9.24A4.988,4.988,0,0,1,0,5.14,5.023,5.023,0,0,1,2.38.91,5.683,5.683,0,0,1,5.5,0,5.327,5.327,0,0,1,11,5.14Z" transform="translate(2 10.09)" fill="#595cff"/>
+                  </svg>
+                </a>
               
               
         </div>

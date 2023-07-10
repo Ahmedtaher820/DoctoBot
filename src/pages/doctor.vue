@@ -152,6 +152,8 @@ const doctorsInfo = ref<Doctors>()
 onMounted(async() => {
     processing.value = true
     if (doctorsTableData.value.selectedDoctors?._id === route.params.id) {
+    processing.value = false
+
         return
     } else {
     //@ts-ignore
