@@ -76,5 +76,6 @@ setTimeout(()=>{
             </div>
             <base-button class="w-fit px-4 " @click="confirmBooking">Confirm Booking</base-button>
         </div>
+        
     </div>    
 </template>

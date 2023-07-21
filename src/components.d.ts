@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     ProfileDoctors: typeof import('./components/App/ProfileDoctors.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Skeleton: typeof import('./components/App/Skeleton.vue')['default']
     TheLoader: typeof import('./components/App/TheLoader.vue')['default']
     UserIcon: typeof import('./components/userIcon.vue')['default']
   }

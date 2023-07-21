@@ -170,29 +170,42 @@ onMounted(() => {
 })
 </script>
 <template>
+    <!-- <overlay-loader v-if="processing" /> -->
   <div class="grid grid-cols-3 gap-6">
     <div class="md:col-span-2 grid gap-y-8 col-span-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-2 justify-between">
-                <img :src="nursesTableData.selectedNurses?.image" v-if="nursesTableData.selectedNurses?.image !== '{}'" class="md:w-24 w-12 md:h-24 h-12 rounded-full object-contain" alt="">
-                <user-icon class="md:w-24 w-12 md:h-24 h-12 rounded-full object-contain" v-else />
+                <div v-if="!processing">
 
-                <div>
+                    <img :src="nursesTableData.selectedNurses?.image" v-if="nursesTableData.selectedNurses?.image !== '{}'" class="md:w-24 w-12 md:h-24 h-12 rounded-full object-contain" alt="">
+                    <user-icon class="md:w-24 w-12 md:h-24 h-12 rounded-full object-contain" v-else />
+                </div>
+                <span v-else class="md:w-24 w-12 md:h-24 h-12 rounded-full skeleton-animation" />
+
+                <div v-if="!processing">
                     <h2 class="font-bold text-base md:text-2xl">{{nursesTableData.selectedNurses?.name}}</h2>
                     <p class="text-textColor mt-1 mb-0">{{nursesTableData.selectedNurses?.shift}}</p>
                 </div>
+                <div v-else>
+                    <h2 class=" md:w-48 w-24 md:h-6 h-4 mb-2 skeleton-animation bg-zinc-600" />
+                    <p class=" md:w-24 w-12 md:h-4 h-4  skeleton-animation bg-zinc-600" />
+                </div>
+
             </div>
             <div class="stars bg-white rounded-lg flex flex-col gap-2 items-center justify-center md:pt-3 md:px-3 md:pb-2 p-2">
-                <h2 class="md:text-2xl text-base font-semibold">
+                <h2  v-if="!processing" class="md:text-2xl text-base font-semibold">
                     {{ nursesTableData.selectedNurses?.rating }}
                 </h2>
-                <ul class="flex md:gap-1">
+                <h2 v-else class="w-8 h-8 skeleton-animation rounded-2xl"/>
+                <ul class="flex md:gap-1" v-if="!processing">
                     <li v-for="star in nursesTableData.selectedNurses?.rating" :key="star">
                         <svg   xmlns="http://www.w3.org/2000/svg" class="w-4 md:w-8 md:h-8w-4 md:h-8" viewBox="0 0 24 24"><path fill="#DCD74A" d="m14.43 10l-1.47-4.84c-.29-.95-1.63-.95-1.91 0L9.57 10H5.12c-.97 0-1.37 1.25-.58 1.81l3.64 2.6l-1.43 4.61c-.29.93.79 1.68 1.56 1.09l3.69-2.8l3.69 2.81c.77.59 1.85-.16 1.56-1.09l-1.43-4.61l3.64-2.6c.79-.57.39-1.81-.58-1.81h-4.45z"/></svg>
                     </li>
-                    <!-- <li v-for="star in disableCount" :key="star">
-                        <svg   xmlns="http://www.w3.org/2000/svg" class="w-4 md:w-8 md:h-8w-4 md:h-8"  viewBox="0 0 24 24"><path fill="#707070" d="m14.43 10l-1.47-4.84c-.29-.95-1.63-.95-1.91 0L9.57 10H5.12c-.97 0-1.37 1.25-.58 1.81l3.64 2.6l-1.43 4.61c-.29.93.79 1.68 1.56 1.09l3.69-2.8l3.69 2.81c.77.59 1.85-.16 1.56-1.09l-1.43-4.61l3.64-2.6c.79-.57.39-1.81-.58-1.81h-4.45z"/></svg>
-                    </li> -->
+                </ul>
+                <ul class="flex md:gap-1" v-else>
+                    <li v-for="star in 5" :key="star">
+                        <svg   xmlns="http://www.w3.org/2000/svg" class="w-4 md:w-8 md:h-8w-4 md:h-8 " viewBox="0 0 24 24"><path fill="#eee" d="m14.43 10l-1.47-4.84c-.29-.95-1.63-.95-1.91 0L9.57 10H5.12c-.97 0-1.37 1.25-.58 1.81l3.64 2.6l-1.43 4.61c-.29.93.79 1.68 1.56 1.09l3.69-2.8l3.69 2.81c.77.59 1.85-.16 1.56-1.09l-1.43-4.61l3.64-2.6c.79-.57.39-1.81-.58-1.81h-4.45z"/></svg>
+                    </li>
                 </ul>
             </div>
         </div>

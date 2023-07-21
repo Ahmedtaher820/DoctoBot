@@ -58,7 +58,6 @@ onMounted(async () => {
 </script>
 <template>
   <div class="home">
-    <overlay-loader v-if="processing" />
     <div class="grid grid-cols-3 gap-8">
       <!-- <div class="md:col-span-1 hidden md:block relative">
             <div class=" left-part bg-white">
@@ -129,6 +128,7 @@ onMounted(async () => {
                 v-for="doc in doctorsLimitsTwo"
                 :key="doc._id"
                 :info="doc"
+                :processing="processing"
               />
             </div>
             <div class="flex flex-col gap-3">
@@ -139,6 +139,8 @@ onMounted(async () => {
               <nurses-grid
                 v-for="nurse in nursesLimitsTwo"
                 :key="nurse._id"
+                :processing="processing"
+
                 :info="nurse"
               />
             </div>

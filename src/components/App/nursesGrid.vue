@@ -7,12 +7,18 @@ const props = defineProps({
     info: {
         type: Object as PropType<Nurses>,
         default: () => ({})
+    },
+    processing:{
+        type: Boolean,
+        default:false
     }
 })
 </script>
 
 <template>
-<div class="grid md:grid-cols-5 grid-cols-4 cursor-pointer gap-4 bg-white py-4 px-6 rounded-md doctor-grid relative" @click="$router.push({path:`/nurse/${info._id}`})">
+    <Skeleton v-if="processing" :processing="processing" />
+
+<div v-else class="grid md:grid-cols-5 grid-cols-4 cursor-pointer gap-4 bg-white py-4 px-6 rounded-md doctor-grid relative" @click="$router.push({path:`/nurse/${info._id}`})">
     <div class="md:col-span-2 col-span-3 flex items-center gap-2 justify-startt order-1 font-semibold">
         <check-status :status="info.isAvailable" />
         <img class="w-8 h-8 rounded-full object-contain" v-if="info.image !== '{}'" loading="lazy"   :src="info.image" alt="">

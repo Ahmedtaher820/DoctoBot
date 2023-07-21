@@ -7,20 +7,20 @@ const { getAllDoctors } = doctors();
 const {  doctorsTableData } = storeToRefs(doctors());
 const processing = ref(false);
 
-onMounted(async () => {
-  if (doctorsTableData.value.doctorsList.length > 0) {
-    return;
+if (doctorsTableData.value.doctorsList.length === 0) {
+    processing.value = true;
+     getAllDoctors().finally(() => {
+      processing.value = false;
+    });
   }
-  processing.value = true;
-  await getAllDoctors().finally(() => {
-    processing.value = false;
-  });
-});
+const handleScrolled = ()=>{
+console.log('donme')
+}
 </script>
 
 <template>
   <div class="doctors">
-    <overlay-loader v-if="processing" />
+    <!-- <overlay-loader v-if="processing" /> -->
 
     <div class="grid md:grid-cols-3 grid-cols-2 gap-4">
       <div class="md:col-span-1 col-span-2">
@@ -46,14 +46,22 @@ onMounted(async () => {
       <div class="">
         <h2 class="text-textColor text-1xl mb-2">Available Doctors</h2>
         <div class="avaliable-docs flex flex-col gap-3 overflow-y-scroll">
-          <doctors-grid
-            v-for="doc in doctorsTableData.doctorsList"
-            :key="doc._id"
-            :info="doc"
-          />
+            <div v-if="!processing">
+
+              <doctors-grid
+              v-for="doc in doctorsTableData.doctorsList"
+              :key="doc._id"
+              :info="doc"
+              :processing="processing"
+              />
+            </div>
+            <div  v-else>
+              <skeleton v-for="item in 4" :key="item" />
+            </div>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
